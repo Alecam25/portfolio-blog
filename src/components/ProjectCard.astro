@@ -1,0 +1,65 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tech: string;
+  slug: string;
+  github?: string;
+  demo?: string;
+}
+
+const { title, description, tech, slug, github, demo } = Astro.props;
+const techList = tech.split(",").map((item: string) => item.trim());
+---
+
+<article class="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-cyan-400/50 hover:bg-white/[0.07] hover:shadow-2xl">
+  <div class="mb-5 flex flex-wrap gap-2">
+    {techList.map((item) => (
+      <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">
+        {item}
+      </span>
+    ))}
+  </div>
+
+  <div class="flex-1">
+    <h3 class="mb-4 text-xl font-semibold leading-snug text-white transition duration-300 group-hover:text-cyan-300">
+      {title}
+    </h3>
+
+    <p class="text-sm leading-7 text-slate-300 md:text-base md:leading-8">
+      {description}
+    </p>
+  </div>
+
+  <div class="mt-8 flex flex-wrap gap-3">
+    <a
+      href={`/projects/${slug}`}
+      class="inline-flex items-center gap-2 rounded-lg border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300 transition hover:border-cyan-400 hover:bg-cyan-400/20 hover:text-cyan-200"
+    >
+      View Project
+      <span aria-hidden="true">→</span>
+    </a>
+
+    {github && (
+      <a
+        href={github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-medium text-slate-300 transition hover:border-cyan-400 hover:text-cyan-300"
+      >
+        GitHub
+      </a>
+    )}
+
+    {demo && (
+      <a
+        href={demo}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-medium text-slate-300 transition hover:border-cyan-400 hover:text-cyan-300"
+      >
+        Live Demo
+      </a>
+    )}
+  </div>
+</article>

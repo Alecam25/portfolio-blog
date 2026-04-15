@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Message Sent | ProjectLog"
+  description="Your message has been sent successfully."
+>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+
+    <main class="container-custom flex-1 py-20">
+      <section class="mx-auto max-w-3xl text-center">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-lg">
+          <div class="mb-6 flex justify-center">
+            <div class="flex h-20 w-20 items-center justify-center rounded-full bg-cyan-400/15 border border-cyan-400/30">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-10 w-10 text-cyan-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </div>
+
+          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">
+            Success
+          </p>
+
+          <h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">
+            Message sent successfully
+          </h1>
+
+          <p class="mx-auto mb-8 max-w-2xl leading-8 text-slate-300">
+            Thank you for reaching out. I received your message and I’ll reply as soon as possible.
+          </p>
+
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-black transition hover:scale-[1.02] hover:opacity-90"
+          >
+            Back to Contact
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,116 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ContactForm from "../components/ContactForm.astro";
+---
+
+<BaseLayout
+  title="ProjectLog | Contact"
+  description="Get in touch for internships, junior roles, freelance work or collaboration."
+>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+
+    <main class="container-custom flex-1 py-20">
+      <section class="mx-auto max-w-5xl">
+        <div class="mb-12 text-center">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">
+            Contact
+          </p>
+          <h1 class="mb-4 text-4xl font-bold md:text-5xl">
+            Let’s work together
+          </h1>
+          <p class="mx-auto max-w-2xl leading-8 text-slate-300">
+            I’m open to internships, junior opportunities, freelance work, and collaboration on tech projects.
+            Feel free to send a message and I’ll get back to you as soon as possible.
+          </p>
+        </div>
+
+        <div class="grid gap-8 lg:grid-cols-[1fr_1.3fr]">
+          <aside class="space-y-6">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h2 class="mb-4 text-xl font-semibold text-white">Contact Info</h2>
+
+              <div class="space-y-4 text-slate-300">
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 text-cyan-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5A2.25 2.25 0 002.25 6.75m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.909A2.25 2.25 0 012.25 6.993V6.75" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-white">Email</p>
+                    <p>Alessandro.cam.2005@gmail.com</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 text-cyan-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a8.25 8.25 0 008.25-8.25c0-4.556-3.694-8.25-8.25-8.25S3.75 8.194 3.75 12.75 7.444 21 12 21z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75v6l3.75 2.25" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-white">Availability</p>
+                    <p>Open to internships and junior opportunities</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 text-cyan-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c4.97 0 9-3.806 9-8.5S16.97 4 12 4 3 7.806 3 12.5 7.03 21 12 21z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c1.933-2.23 3-5.36 3-8.5S13.933 6.23 12 4c-1.933 2.23-3 5.36-3 8.5S10.067 18.77 12 21z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-white">Location</p>
+                    <p>Costa Rica</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h2 class="mb-4 text-xl font-semibold text-white">Find me online</h2>
+
+              <div class="flex flex-col gap-3">
+                <a
+                  href="https://github.com/Alecam25"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-slate-300 transition hover:border-cyan-400 hover:text-white"
+                >
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.7-2.782.605-3.369-1.343-3.369-1.343-.454-1.157-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.893 1.53 2.341 1.088 2.91.832.091-.647.35-1.088.636-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.748-1.026 2.748-1.026.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.31.678.921.678 1.857 0 1.34-.012 2.421-.012 2.75 0 .269.18.58.688.481A10.019 10.019 0 0022 12.017C22 6.484 17.523 2 12 2z" />
+                  </svg>
+                  <span>GitHub</span>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/alessandro-campos-bb8243351/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-slate-300 transition hover:border-cyan-400 hover:text-white"
+                >
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current">
+                    <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7 0h3.8v2.2h.1c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.3c0-1.74-.03-3.98-2.42-3.98-2.42 0-2.8 1.89-2.8 3.85V24h-4V8z"/>
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </aside>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-2">
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

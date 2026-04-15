@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Skills from "../components/Skills.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+const featured = projects.slice(0, 3);
+---
+
+<BaseLayout
+  title="ProjectLog | Home"
+  description="Systems Engineering student portfolio with projects in SQL, PHP, HTML, CSS and JavaScript."
+>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+
+    <main class="flex-1">
+      <Hero />
+
+      <section class="py-6 md:py-10">
+        <Skills />
+      </section>
+
+      <section class="container-custom py-16 md:py-24">
+        <div class="mb-10 flex items-center justify-between gap-4">
+          <h2 class="text-3xl font-bold md:text-4xl">Featured Projects</h2>
+          <a href="/projects" class="text-cyan-400 hover:underline">See all</a>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {featured.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              tech={project.data.tech}
+            slug={project.data.slug}
+            github={project.data.github}
+            demo={project.data.demo}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

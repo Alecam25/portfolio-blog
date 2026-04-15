@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="ProjectLog | About"
+  description="Learn more about Alessandro, a Systems Engineering student focused on web development, databases and practical software solutions."
+>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+
+    <main class="flex-1">
+      <section class="container-custom py-24 md:py-32">
+        <div class="max-w-5xl">
+          <p class="mb-5 text-sm uppercase tracking-[0.3em] text-cyan-400">
+            About Me
+          </p>
+
+          <h1 class="max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl md:leading-tight">
+            Systems Engineering Student Focused on Building Practical, Reliable and User-Oriented Digital Solutions
+          </h1>
+
+          <p class="mt-8 max-w-3xl text-lg leading-9 text-slate-300">
+            I am a Systems Engineering student nearing graduation, with a strong interest in
+            web development, databases and software solutions that solve real-world problems.
+            My goal is to continue growing as a developer by building systems that are functional,
+            well-structured and designed with real users in mind.
+          </p>
+        </div>
+      </section>
+
+      <section class="container-custom pb-12 md:pb-16">
+        <div class="grid gap-8 lg:grid-cols-2">
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition duration-300 hover:border-cyan-400/40 hover:bg-white/[0.07] md:p-10">
+            <h2 class="mb-5 text-2xl font-semibold text-white">Professional Profile</h2>
+
+            <p class="leading-9 text-slate-300">
+              I enjoy working on projects that combine front-end structure, back-end logic and
+              database organization. My academic background has strengthened my ability to analyze
+              requirements, solve technical problems and create systems with a practical purpose.
+            </p>
+
+            <p class="mt-5 leading-9 text-slate-300">
+              I am especially interested in opportunities where I can contribute to web applications,
+              data-driven systems and software projects that require both technical thinking and
+              continuous learning.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition duration-300 hover:border-cyan-400/40 hover:bg-white/[0.07] md:p-10">
+            <h2 class="mb-5 text-2xl font-semibold text-white">What I Bring</h2>
+
+            <ul class="space-y-4 text-slate-300">
+              <li class="flex items-start gap-3">
+                <span class="mt-2 h-2 w-2 rounded-full bg-cyan-400"></span>
+                <span>Strong foundation in SQL, PHP, HTML, CSS and JavaScript</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-2 h-2 w-2 rounded-full bg-cyan-400"></span>
+                <span>Interest in creating clean, responsive and functional interfaces</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-2 h-2 w-2 rounded-full bg-cyan-400"></span>
+                <span>Experience building academic and practical projects with structured logic</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-2 h-2 w-2 rounded-full bg-cyan-400"></span>
+                <span>Problem-solving mindset with attention to usability and organization</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-2 h-2 w-2 rounded-full bg-cyan-400"></span>
+                <span>Willingness to learn quickly and adapt to professional development environments</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="container-custom py-12 md:py-16">
+        <div class="grid gap-8 lg:grid-cols-3">
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition duration-300 hover:border-cyan-400/40 hover:bg-white/[0.07] md:p-10 lg:col-span-2">
+            <h2 class="mb-5 text-2xl font-semibold text-white">Career Goal</h2>
+
+            <p class="leading-9 text-slate-300">
+              At this stage of my career, I am looking for internship or entry-level opportunities
+              where I can apply my technical knowledge, strengthen my development skills and gain
+              hands-on experience in real projects. I want to grow in environments where collaboration,
+              continuous improvement and practical problem-solving are valued.
+            </p>
+
+            <p class="mt-5 leading-9 text-slate-300">
+              This portfolio was created as a way to present my projects, document my learning process
+              and show the type of work I can contribute as I move into the professional field.
+            </p>
+          </article>
+
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition duration-300 hover:border-cyan-400/40 hover:bg-white/[0.07] md:p-10">
+            <h2 class="mb-5 text-2xl font-semibold text-white">Main Stack</h2>
+
+            <div class="flex flex-wrap gap-3">
+              <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-medium text-cyan-300">SQL</span>
+              <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-medium text-cyan-300">PHP</span>
+              <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-medium text-cyan-300">HTML</span>
+              <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-medium text-cyan-300">CSS</span>
+              <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-medium text-cyan-300">JavaScript</span>
+              <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-medium text-cyan-300">Responsive Design</span>
+              <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-sm font-medium text-cyan-300">Web Development</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

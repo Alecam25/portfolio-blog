@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={`ProjectLog | ${project.data.title}`}
+  description={project.data.description}
+>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+
+    <main class="container-custom max-w-4xl py-20 flex-1">
+      <p class="mb-3 text-cyan-400">{project.data.tech}</p>
+      <h1 class="mb-6 text-4xl font-bold">{project.data.title}</h1>
+      <p class="mb-10 text-slate-300">{project.data.description}</p>
+
+      <article class="content">
+        <Content />
+      </article>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="ProjectLog | Resume"
+  description="Preview and download my resume."
+>
+  <div class="min-h-screen flex flex-col">
+    <Header />
+
+    <main class="container-custom py-24 flex-1">
+      <h1 class="mb-6 text-4xl font-bold">Resume</h1>
+
+      <p class="mb-10 max-w-2xl text-lg leading-8 text-slate-300">
+        You can preview my resume below or download a copy.
+      </p>
+
+      <!-- PDF VIEWER -->
+     <div class="mb-10 overflow-hidden rounded-2xl border border-white/10 bg-black/40">
+      <iframe
+           src="/resume.pdf"
+           class="h-[80vh] w-full"
+          ></iframe>
+      </div>
+
+      <!-- DOWNLOAD BUTTON -->
+      <a
+        href="/Resume.pdf"
+        download
+        class="inline-block rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-black transition hover:opacity-90"
+      >
+        Download Resume
+      </a>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>
