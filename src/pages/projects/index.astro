@@ -6,29 +6,151 @@ import ProjectCard from "../../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
+
+// Build unique tech tags from all projects
+const allTags = ["All", ...Array.from(
+  new Set(
+    projects.flatMap((p) =>
+      p.data.tech.split(",").map((t: string) => t.trim())
+    )
+  )
+)];
 ---
 
-<BaseLayout title="ProjectLog | Projects" description="Portfolio projects built with SQL, PHP, HTML, CSS and JavaScript.">
+<BaseLayout
+  title="ProjectLog | Projects"
+  description="Portfolio projects built with SQL, PHP, HTML, CSS and JavaScript."
+>
   <div class="min-h-screen flex flex-col">
     <Header />
 
     <main class="container-custom py-20 flex-1">
-      <h1 class="mb-10 text-4xl font-bold">Projects</h1>
 
-      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {projects.map((project) => (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            tech={project.data.tech}
-            slug={project.data.slug}
-            github={project.data.github}
-            demo={project.data.demo}
-          />
+      <!-- Page header -->
+      <div class="mb-10">
+        <p class="mb-3 text-sm uppercase tracking-[0.3em] text-cyan-400">Work</p>
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <h1 class="text-4xl font-bold md:text-5xl">Projects</h1>
+          <p id="project-counter" class="text-sm text-slate-400">
+            Showing <span id="visible-count">{projects.length}</span> of {projects.length} projects
+          </p>
+        </div>
+        <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
+          A collection of web, database and management systems built during my academic and personal development journey.
+        </p>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="mb-10 flex flex-wrap gap-2">
+        {allTags.map((tag) => (
+          <button
+            class="filter-btn rounded-full border px-4 py-2 text-sm font-medium transition"
+            data-tag={tag}
+            data-active={tag === "All" ? "true" : "false"}
+          >
+            {tag}
+          </button>
         ))}
       </div>
+
+      <!-- Projects grid -->
+      <div id="projects-grid" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {projects.map((project, i) => (
+          <div
+            class="project-item"
+            data-tech={project.data.tech}
+          >
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              tech={project.data.tech}
+              slug={project.data.slug}
+              github={project.data.github}
+              demo={project.data.demo}
+              index={i + 1}
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden py-20 text-center">
+        <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776" />
+          </svg>
+        </div>
+        <h2 class="mb-2 text-xl font-semibold text-white">No projects found</h2>
+        <p class="text-slate-400">No projects match that filter. Try selecting a different technology.</p>
+        <button
+          id="reset-filter"
+          class="mt-6 rounded-xl border border-white/10 px-5 py-2 text-sm text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400"
+        >
+          Show all projects
+        </button>
+      </div>
+
     </main>
 
     <Footer />
   </div>
 </BaseLayout>
+
+<style>
+  .filter-btn[data-active="true"] {
+    background-color: rgba(34, 211, 238, 0.15);
+    border-color: rgba(34, 211, 238, 0.5);
+    color: #67e8f9;
+  }
+  .filter-btn[data-active="false"] {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+  }
+  .filter-btn[data-active="false"]:hover {
+    border-color: rgba(34, 211, 238, 0.3);
+    color: #e2e8f0;
+  }
+  .project-item {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .project-item.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+  const items = document.querySelectorAll<HTMLElement>(".project-item");
+  const emptyState = document.getElementById("empty-state");
+  const visibleCount = document.getElementById("visible-count");
+  const resetBtn = document.getElementById("reset-filter");
+
+  function setActiveFilter(tag: string) {
+    buttons.forEach((btn) => {
+      btn.dataset.active = btn.dataset.tag === tag ? "true" : "false";
+    });
+
+    let count = 0;
+    items.forEach((item) => {
+      const tech = item.dataset.tech ?? "";
+      const techList = tech.split(",").map((t) => t.trim());
+      const matches = tag === "All" || techList.includes(tag);
+      item.classList.toggle("hidden", !matches);
+      if (matches) count++;
+    });
+
+    if (visibleCount) visibleCount.textContent = String(count);
+    if (emptyState) emptyState.classList.toggle("hidden", count > 0);
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setActiveFilter(btn.dataset.tag ?? "All");
+    });
+  });
+
+  resetBtn?.addEventListener("click", () => {
+    setActiveFilter("All");
+  });
+</script>
