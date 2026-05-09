@@ -19,31 +19,147 @@ const featured = projects.slice(0, 3);
     <Header />
 
     <main class="flex-1">
-      <Hero />
 
+      <!-- Hero -->
+      <section class="container-custom py-28 md:py-36">
+        <div class="max-w-3xl">
+
+          <!-- Availability badge -->
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-300">
+            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Available for internships & junior roles
+          </div>
+
+          <p class="mb-5 text-sm uppercase tracking-[0.3em] text-cyan-400">
+            Portfolio · Systems Engineering
+          </p>
+
+          <h1 class="mb-8 text-4xl font-bold leading-tight md:text-6xl">
+            Building Practical Web and Database Solutions with Real-World Impact
+          </h1>
+
+          <p class="mb-10 max-w-2xl text-lg leading-9 text-slate-300">
+            Systems Engineering student at UTC, graduating September 2025.
+            Focused on SQL, PHP, HTML, CSS and JavaScript — building structured,
+            functional and user-focused applications.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="/projects"
+              class="rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-black transition hover:opacity-90 glow"
+            >
+              View Projects
+            </a>
+            <a
+              href="/resume"
+              class="rounded-xl border border-white/20 px-6 py-3 text-white transition hover:border-cyan-400 hover:text-cyan-400"
+            >
+              View Resume
+            </a>
+            <a
+              href="/contact"
+              class="rounded-xl border border-white/20 px-6 py-3 text-white transition hover:border-cyan-400 hover:text-cyan-400"
+            >
+              Contact Me
+            </a>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="mt-14 flex flex-wrap gap-8 border-t border-white/10 pt-10">
+            <div>
+              <p class="text-3xl font-bold text-white">{projects.length}</p>
+              <p class="mt-1 text-sm text-slate-400">Projects built</p>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-white">5+</p>
+              <p class="mt-1 text-sm text-slate-400">Technologies</p>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-white">B2</p>
+              <p class="mt-1 text-sm text-slate-400">English level</p>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-white">2025</p>
+              <p class="mt-1 text-sm text-slate-400">Graduating</p>
+            </div>
+          </div>
+
+          <!-- Tech chips -->
+          <div class="mt-10 flex flex-wrap gap-3">
+            {["SQL", "PHP", "HTML", "CSS", "JavaScript", "TypeScript", "Astro", "Tailwind CSS"].map((t) => (
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">{t}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
       <section class="py-6 md:py-10">
         <Skills />
       </section>
 
+      <!-- Featured projects -->
       <section class="container-custom py-16 md:py-24">
         <div class="mb-10 flex items-center justify-between gap-4">
-          <h2 class="text-3xl font-bold md:text-4xl">Featured Projects</h2>
-          <a href="/projects" class="text-cyan-400 hover:underline">See all</a>
+          <div>
+            <p class="mb-2 text-sm uppercase tracking-[0.3em] text-cyan-400">Work</p>
+            <h2 class="text-3xl font-bold md:text-4xl">Featured Projects</h2>
+          </div>
+          <a href="/projects" class="shrink-0 text-sm text-cyan-400 transition hover:underline">
+            See all →
+          </a>
         </div>
 
         <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {featured.map((project) => (
+          {featured.map((project, i) => (
             <ProjectCard
               title={project.data.title}
               description={project.data.description}
               tech={project.data.tech}
-            slug={project.data.slug}
-            github={project.data.github}
-            demo={project.data.demo}
+              slug={project.data.slug}
+              github={project.data.github}
+              demo={project.data.demo}
+              index={i + 1}
             />
           ))}
         </div>
       </section>
+
+      <!-- CTA section -->
+      <section class="container-custom pb-24 md:pb-32">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-10 text-center md:p-16">
+          <p class="mb-4 text-sm uppercase tracking-[0.3em] text-cyan-400">Let's connect</p>
+          <h2 class="mb-4 text-3xl font-bold md:text-4xl">Interested in working together?</h2>
+          <p class="mx-auto mb-10 max-w-xl text-lg leading-8 text-slate-300">
+            I'm open to internships, junior roles, freelance projects and collaborations.
+            Feel free to reach out — I'd love to hear from you.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href="/contact"
+              class="rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-black transition hover:opacity-90"
+            >
+              Send a Message
+            </a>
+            <a
+              href="/resume"
+              class="rounded-xl border border-white/20 px-6 py-3 text-white transition hover:border-cyan-400 hover:text-cyan-400"
+            >
+              View Resume
+            </a>
+            <a
+              href="https://www.linkedin.com/in/alessandro-campos-bb8243351/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-xl border border-white/20 px-6 py-3 text-white transition hover:border-cyan-400 hover:text-cyan-400"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <Footer />
