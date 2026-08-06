@@ -1,25 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0a0a0f;
-  --bg-soft: #111827;
-  --card: rgba(255, 255, 255, 0.05);
-  --border: rgba(255, 255, 255, 0.1);
-  --text: #ffffff;
-  --muted: #cbd5e1;
-  --accent: #22d3ee;
+  --bg: #080a09;
+  --bg-soft: #10130f;
+  --panel: #171b16;
+  --panel-soft: rgba(23, 27, 22, 0.78);
+  --card: rgba(23, 27, 22, 0.78);
+  --border: rgba(64, 72, 58, 0.88);
+  --text: #f4f7ef;
+  --muted: #c9d1c0;
+  --muted-soft: #929c89;
+  --accent: #a3e635;
+  --accent-strong: #84cc16;
+  --success: #34d399;
+  --warning: #fbbf24;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+::selection {
+  background: rgba(163, 230, 53, 0.28);
+  color: var(--text);
+}
+
 body {
   margin: 0;
   color: var(--text);
   background:
-    radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 30%),
+    linear-gradient(rgba(163, 230, 53, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(163, 230, 53, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 18% 0%, rgba(163, 230, 53, 0.12), transparent 28%),
+    radial-gradient(circle at 88% 12%, rgba(251, 191, 36, 0.08), transparent 24%),
     linear-gradient(to bottom, var(--bg), var(--bg-soft));
+  background-size: auto, 42px 42px, auto, auto, auto;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -34,7 +49,141 @@ a {
 }
 
 .glow {
-  box-shadow: 0 0 30px rgba(34, 211, 238, 0.2);
+  box-shadow: 0 0 30px rgba(163, 230, 53, 0.2);
+}
+
+.hero-shell {
+  background:
+    linear-gradient(135deg, rgba(16, 19, 15, 0.65), rgba(8, 10, 9, 0.92)),
+    radial-gradient(circle at 80% 20%, rgba(163, 230, 53, 0.12), transparent 32%);
+}
+
+.section-band {
+  background: rgba(16, 19, 15, 0.68);
+}
+
+.stat-tile,
+.skill-tile,
+.info-panel {
+  border: 1px solid var(--border);
+  background: var(--panel-soft);
+}
+
+.text-white {
+  color: var(--text);
+}
+
+.text-slate-300 {
+  color: var(--muted);
+}
+
+.text-slate-400,
+.text-slate-500 {
+  color: var(--muted-soft);
+}
+
+.text-cyan-200,
+.text-cyan-300,
+.text-cyan-400 {
+  color: var(--accent);
+}
+
+.text-emerald-300,
+.text-emerald-400 {
+  color: var(--success);
+}
+
+.bg-cyan-300,
+.bg-cyan-400 {
+  background-color: var(--accent);
+}
+
+.hover\:bg-cyan-200:hover {
+  background-color: #bef264;
+}
+
+.text-slate-950,
+.text-black {
+  color: #10130f;
+}
+
+.bg-emerald-400 {
+  background-color: var(--success);
+}
+
+.bg-cyan-300\/10,
+.bg-cyan-400\/10,
+.bg-cyan-400\/15 {
+  background-color: rgba(163, 230, 53, 0.11);
+}
+
+.bg-emerald-400\/10 {
+  background-color: rgba(52, 211, 153, 0.1);
+}
+
+.bg-white\/5,
+.bg-white\/\[0\.03\],
+.bg-white\/\[0\.04\] {
+  background-color: rgba(23, 27, 22, 0.78);
+}
+
+.bg-slate-950\/60,
+.bg-slate-950\/70,
+.bg-slate-950\/80,
+.bg-black\/20,
+.bg-black\/30,
+.bg-black\/40 {
+  background-color: rgba(8, 10, 9, 0.82);
+}
+
+.hover\:bg-slate-900\/80:hover {
+  background-color: rgba(31, 36, 28, 0.9);
+}
+
+.border-white\/10,
+.border-white\/15,
+.border-white\/20 {
+  border-color: var(--border);
+}
+
+.border-cyan-300\/20,
+.border-cyan-300\/25,
+.border-cyan-300\/30,
+.border-cyan-300\/50,
+.border-cyan-400\/30 {
+  border-color: rgba(163, 230, 53, 0.36);
+}
+
+.border-emerald-400\/30 {
+  border-color: rgba(52, 211, 153, 0.36);
+}
+
+.hover\:border-cyan-300:hover,
+.hover\:border-cyan-400:hover {
+  border-color: var(--accent);
+}
+
+.hover\:text-cyan-200:hover,
+.hover\:text-cyan-300:hover,
+.hover\:text-cyan-400:hover {
+  color: #bef264;
+}
+
+.stat-tile {
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.skill-tile {
+  min-height: 142px;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.info-panel {
+  min-height: 180px;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
 }
 
 .content {
@@ -62,4 +211,45 @@ a {
 .content li {
   margin-bottom: 0.75rem;
   line-height: 1.9;
+}
+
+.project-content {
+  max-width: none;
+}
+
+.project-content h2 {
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.project-content h2:first-child {
+  margin-top: 0;
+}
+
+.project-content p {
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 1.25rem;
+}
+
+.project-content ul {
+  display: grid;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 1.25rem 0 1.75rem;
+  padding: 0;
+}
+
+.project-content li {
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--panel-soft);
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 0.85rem 1rem;
 }

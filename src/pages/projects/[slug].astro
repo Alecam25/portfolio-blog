@@ -23,136 +23,126 @@ const techList = project.data.tech.split(",").map((t: string) => t.trim());
 ---
 
 <BaseLayout
-  title={`ProjectLog | ${project.data.title}`}
+  title={`${project.data.title} | Alessandro Campos`}
   description={project.data.description}
 >
   <div class="min-h-screen flex flex-col">
     <Header />
 
     <main class="flex-1">
-
-      <!-- Project hero header -->
-      <section class="border-b border-white/10 bg-black/20">
-        <div class="container-custom py-16 md:py-20">
-
-          <!-- Back link -->
-          <a
-            href="/projects"
-            class="mb-8 inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-cyan-400"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
+      <section class="hero-shell border-b border-white/10">
+        <div class="container-custom py-14 md:py-18">
+          <a href="/projects" class="mb-8 inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-cyan-300">
+            <span aria-hidden="true">&lt;-</span>
             Back to Projects
           </a>
 
-          <div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
-            <div class="max-w-2xl">
-              <!-- Tech tags -->
-              <div class="mb-5 flex flex-wrap gap-2">
+          <div class="grid gap-10 lg:grid-cols-[1fr_0.42fr] lg:items-start">
+            <div>
+              <p class="mb-5 text-sm uppercase tracking-[0.28em] text-cyan-300">Project case study</p>
+              <h1 class="max-w-4xl text-4xl font-bold leading-tight md:text-5xl">
+                {project.data.title}
+              </h1>
+              <p class="mt-6 max-w-3xl text-lg leading-9 text-slate-300">
+                {project.data.description}
+              </p>
+
+              <div class="mt-8 flex flex-wrap gap-2">
                 {techList.map((item: string) => (
-                  <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">
+                  <span class="rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-200">
                     {item}
                   </span>
                 ))}
               </div>
-
-              <h1 class="mb-4 text-4xl font-bold leading-tight md:text-5xl">
-                {project.data.title}
-              </h1>
-
-              <p class="text-lg leading-8 text-slate-300">
-                {project.data.description}
-              </p>
             </div>
 
-            <!-- CTA buttons -->
-            <div class="flex shrink-0 flex-wrap gap-3">
-              {project.data.github && (
-                <a
-                  href={project.data.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-xl border border-white/20 px-5 py-3 font-semibold text-white transition hover:border-cyan-400 hover:text-cyan-400"
-                >
-                  <svg viewBox="0 0 24 24" class="h-5 w-5 fill-current">
-                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.7-2.782.605-3.369-1.343-3.369-1.343-.454-1.157-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.893 1.53 2.341 1.088 2.91.832.091-.647.35-1.088.636-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.748-1.026 2.748-1.026.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.31.678.921.678 1.857 0 1.34-.012 2.421-.012 2.75 0 .269.18.58.688.481A10.019 10.019 0 0022 12.017C22 6.484 17.523 2 12 2z" />
-                  </svg>
-                  View on GitHub
-                </a>
-              )}
+            <aside class="rounded-xl border border-white/10 bg-slate-950/80 p-6 shadow-2xl shadow-black/30">
+              <p class="mb-4 text-sm font-semibold text-white">Project actions</p>
+              <div class="flex flex-col gap-3">
+                {project.data.demo && (
+                  <a
+                    href={project.data.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rounded-lg bg-cyan-300 px-5 py-3 text-center font-semibold text-slate-950 transition hover:bg-cyan-200"
+                  >
+                    Open Live Demo
+                  </a>
+                )}
 
-              {project.data.demo && (
+                {project.data.github && (
+                  <a
+                    href={project.data.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rounded-lg border border-white/20 px-5 py-3 text-center font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-300"
+                  >
+                    View Source Code
+                  </a>
+                )}
+
                 <a
-                  href={project.data.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-black transition hover:opacity-90"
+                  href="/contact"
+                  class="rounded-lg border border-white/20 px-5 py-3 text-center font-semibold text-slate-300 transition hover:border-cyan-300 hover:text-cyan-300"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                  Live Demo
+                  Ask About This Project
                 </a>
-              )}
-            </div>
+              </div>
+
+              <div class="mt-6 border-t border-white/10 pt-5">
+                <p class="mb-3 text-xs uppercase tracking-[0.22em] text-slate-500">Stack summary</p>
+                <div class="flex flex-wrap gap-2">
+                  {techList.slice(0, 5).map((item: string) => (
+                    <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-slate-300">{item}</span>
+                  ))}
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      <!-- Markdown content -->
-      <section class="container-custom py-16">
-        <article class="content max-w-3xl">
-          <Content />
-        </article>
+      <section class="container-custom py-14 md:py-20">
+        <div class="grid gap-10 lg:grid-cols-[0.28fr_0.72fr]">
+          <aside class="hidden lg:block">
+            <div class="sticky top-28 rounded-xl border border-white/10 bg-slate-950/70 p-5">
+              <p class="mb-4 text-xs uppercase tracking-[0.22em] text-slate-500">Case study</p>
+              <nav class="space-y-3 text-sm text-slate-400">
+                <a class="block transition hover:text-cyan-300" href="#overview">Overview</a>
+                <a class="block transition hover:text-cyan-300" href="#details">Technical details</a>
+                <a class="block transition hover:text-cyan-300" href="#navigation">More projects</a>
+              </nav>
+            </div>
+          </aside>
+
+          <article id="overview" class="project-content rounded-xl border border-white/10 bg-slate-950/60 p-6 md:p-8">
+            <Content />
+          </article>
+        </div>
       </section>
 
-      <!-- Prev / Next navigation -->
       {(prev || next) && (
-        <section class="border-t border-white/10">
-          <div class="container-custom py-12">
-            <p class="mb-6 text-xs uppercase tracking-[0.3em] text-slate-500">More Projects</p>
+        <section id="navigation" class="section-band border-t border-white/10 py-12">
+          <div class="container-custom">
+            <p class="mb-6 text-xs uppercase tracking-[0.28em] text-slate-500">More Projects</p>
             <div class="grid gap-4 sm:grid-cols-2">
-
               {prev ? (
-                <a
-                  href={`/projects/${prev.data.slug}`}
-                  class="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-cyan-400/40 hover:bg-white/[0.07]"
-                >
-                  <p class="mb-2 flex items-center gap-2 text-xs text-slate-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    Previous
-                  </p>
-                  <p class="font-semibold text-white transition group-hover:text-cyan-300">
-                    {prev.data.title}
-                  </p>
+                <a href={`/projects/${prev.data.slug}`} class="group rounded-xl border border-white/10 bg-slate-950/70 p-6 transition hover:border-cyan-300/40 hover:bg-slate-900/80">
+                  <p class="mb-2 text-xs text-slate-500">Previous</p>
+                  <p class="font-semibold text-white transition group-hover:text-cyan-200">{prev.data.title}</p>
                 </a>
               ) : <div />}
 
               {next ? (
-                <a
-                  href={`/projects/${next.data.slug}`}
-                  class="group rounded-2xl border border-white/10 bg-white/5 p-6 text-right transition hover:border-cyan-400/40 hover:bg-white/[0.07]"
-                >
-                  <p class="mb-2 flex items-center justify-end gap-2 text-xs text-slate-500">
-                    Next
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </p>
-                  <p class="font-semibold text-white transition group-hover:text-cyan-300">
-                    {next.data.title}
-                  </p>
+                <a href={`/projects/${next.data.slug}`} class="group rounded-xl border border-white/10 bg-slate-950/70 p-6 text-right transition hover:border-cyan-300/40 hover:bg-slate-900/80">
+                  <p class="mb-2 text-xs text-slate-500">Next</p>
+                  <p class="font-semibold text-white transition group-hover:text-cyan-200">{next.data.title}</p>
                 </a>
               ) : <div />}
-
             </div>
           </div>
         </section>
       )}
-
     </main>
 
     <Footer />

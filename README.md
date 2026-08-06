@@ -1,6 +1,6 @@
-# 🚀 Personal Portfolio Blog
+# 🚀 Personal Portfolio
 
-Modern personal portfolio and blog built with Astro to showcase projects, technical skills, and development experience.
+Modern personal portfolio built with Astro to showcase projects, technical skills, and development experience.
 
 ---
 

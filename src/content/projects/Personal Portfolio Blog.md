@@ -1,6 +1,6 @@
 ---
-title: "Personal Portfolio Blog"
-description: "Modern personal portfolio and blog built with Astro to showcase projects, technical skills, and development experience."
+title: "Personal Portfolio"
+description: "Modern personal portfolio built with Astro to showcase projects, technical skills, and development experience."
 tech: "Astro, TypeScript, Tailwind CSS"
 slug: "personal-portfolio-blog"
 github: "https://github.com/Alecam25/portfolio-blog"
@@ -9,7 +9,7 @@ demo: ""
 
 ## Overview
 
-This project is my personal portfolio and blog, designed to showcase my work, technical skills, and development experience in a clean and modern way.
+This project is my personal portfolio, designed to showcase my work, technical skills, and development experience in a clean and modern way.
 
 It serves as a central hub where I present my projects, document my learning process, and continuously improve my frontend development and UI/UX skills.
 

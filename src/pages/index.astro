@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Hero from "../components/Hero.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import Skills from "../components/Skills.astro";
 import { getCollection } from "astro:content";
@@ -12,154 +11,169 @@ const featured = projects.slice(0, 3);
 ---
 
 <BaseLayout
-  title="ProjectLog | Home"
-  description="Systems Engineering student portfolio with projects in SQL, PHP, HTML, CSS and JavaScript."
+  title="Alessandro Campos | Web & Database Developer"
+  description="Portfolio of Alessandro Campos, a Systems Engineering student graduating in November 2026, focused on web development, databases and practical software solutions."
 >
   <div class="min-h-screen flex flex-col">
     <Header />
 
     <main class="flex-1">
-
-      <!-- Hero -->
-      <section class="container-custom py-28 md:py-36">
-        <div class="max-w-3xl">
-
-          <!-- Availability badge -->
-          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-300">
-            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Available for internships & junior roles
-          </div>
-
-          <p class="mb-5 text-sm uppercase tracking-[0.3em] text-cyan-400">
-            Portfolio · Systems Engineering
-          </p>
-
-          <h1 class="mb-8 text-4xl font-bold leading-tight md:text-6xl">
-            Building Practical Web and Database Solutions with Real-World Impact
-          </h1>
-
-          <p class="mb-10 max-w-2xl text-lg leading-9 text-slate-300">
-            Systems Engineering student at UTC, graduating September 2025.
-            Focused on SQL, PHP, HTML, CSS and JavaScript — building structured,
-            functional and user-focused applications.
-          </p>
-
-          <div class="flex flex-wrap gap-4">
-            <a
-              href="/projects"
-              class="rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-black transition hover:opacity-90 glow"
-            >
-              View Projects
-            </a>
-            <a
-              href="/resume"
-              class="rounded-xl border border-white/20 px-6 py-3 text-white transition hover:border-cyan-400 hover:text-cyan-400"
-            >
-              View Resume
-            </a>
-            <a
-              href="/contact"
-              class="rounded-xl border border-white/20 px-6 py-3 text-white transition hover:border-cyan-400 hover:text-cyan-400"
-            >
-              Contact Me
-            </a>
-          </div>
-
-          <!-- Quick stats -->
-          <div class="mt-14 flex flex-wrap gap-8 border-t border-white/10 pt-10">
-            <div>
-              <p class="text-3xl font-bold text-white">{projects.length}</p>
-              <p class="mt-1 text-sm text-slate-400">Projects built</p>
+      <section class="hero-shell border-b border-white/10">
+        <div class="container-custom grid min-h-[calc(100vh-72px)] items-center gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-300">
+              <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Available for internships and junior roles
             </div>
-            <div>
-              <p class="text-3xl font-bold text-white">5+</p>
-              <p class="mt-1 text-sm text-slate-400">Technologies</p>
-            </div>
-            <div>
-              <p class="text-3xl font-bold text-white">B2</p>
-              <p class="mt-1 text-sm text-slate-400">English level</p>
-            </div>
-            <div>
-              <p class="text-3xl font-bold text-white">2025</p>
-              <p class="mt-1 text-sm text-slate-400">Graduating</p>
+
+            <p class="mb-5 text-sm uppercase tracking-[0.28em] text-cyan-300">
+              Alessandro Campos
+            </p>
+
+            <h1 class="max-w-4xl text-4xl font-bold leading-tight text-white md:text-6xl">
+              Web and Database Developer for Practical Business Systems
+            </h1>
+
+            <p class="mt-7 max-w-2xl text-lg leading-9 text-slate-300">
+              Systems Engineering student at UTC, graduating in November 2026.
+              I build structured web applications with SQL, PHP, JavaScript and modern frontend tools.
+            </p>
+
+            <p class="mt-4 max-w-2xl text-base leading-8 text-slate-400">
+              Desarrollo soluciones web claras y funcionales para necesidades reales: inventarios,
+              reportes, dashboards y sistemas administrativos.
+            </p>
+
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="/projects" class="rounded-lg bg-cyan-300 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-200 glow">
+                View Projects
+              </a>
+              <a href="/resume" class="rounded-lg border border-white/20 px-6 py-3 text-white transition hover:border-cyan-300 hover:text-cyan-300">
+                View Resume
+              </a>
+              <a href="/contact" class="rounded-lg border border-white/20 px-6 py-3 text-white transition hover:border-cyan-300 hover:text-cyan-300">
+                Contact Me
+              </a>
             </div>
           </div>
 
-          <!-- Tech chips -->
-          <div class="mt-10 flex flex-wrap gap-3">
-            {["SQL", "PHP", "HTML", "CSS", "JavaScript", "TypeScript", "Astro", "Tailwind CSS"].map((t) => (
-              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">{t}</span>
+          <aside class="rounded-xl border border-white/10 bg-slate-950/70 p-6 shadow-2xl shadow-black/30">
+            <div class="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <p class="text-sm font-semibold text-white">Profile Snapshot</p>
+                <p class="text-xs text-slate-500">Quick recruiter view</p>
+              </div>
+              <span class="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-200">
+                Bilingual
+              </span>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="stat-tile">
+                <p class="text-3xl font-bold text-white">{projects.length}</p>
+                <p class="mt-1 text-sm text-slate-400">Projects built</p>
+              </div>
+              <div class="stat-tile">
+                <p class="text-3xl font-bold text-white">2026</p>
+                <p class="mt-1 text-sm text-slate-400">Graduating Nov</p>
+              </div>
+              <div class="stat-tile">
+                <p class="text-3xl font-bold text-white">B2</p>
+                <p class="mt-1 text-sm text-slate-400">English level</p>
+              </div>
+              <div class="stat-tile">
+                <p class="text-3xl font-bold text-white">5+</p>
+                <p class="mt-1 text-sm text-slate-400">Core technologies</p>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-lg border border-white/10 bg-white/[0.03] p-5">
+              <p class="mb-3 text-xs uppercase tracking-[0.22em] text-slate-500">Focus</p>
+              <ul class="space-y-3 text-sm leading-6 text-slate-300">
+                <li>Inventory and administrative systems</li>
+                <li>Dashboards, reports and database workflows</li>
+                <li>Clean interfaces for daily business operations</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-band py-16 md:py-20">
+        <Skills />
+      </section>
+
+      <section class="container-custom py-16 md:py-24">
+        <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.28em] text-cyan-300">What I build</p>
+            <h2 class="text-3xl font-bold md:text-4xl">Useful software with clear structure</h2>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-3">
+            <article class="info-panel">
+              <p class="mb-3 text-sm font-semibold text-cyan-200">Business tools</p>
+              <p class="text-sm leading-7 text-slate-300">Systems that organize products, clients, events and daily operations.</p>
+            </article>
+            <article class="info-panel">
+              <p class="mb-3 text-sm font-semibold text-cyan-200">Database work</p>
+              <p class="text-sm leading-7 text-slate-300">SQL workflows, CRUD logic, reporting and structured data management.</p>
+            </article>
+            <article class="info-panel">
+              <p class="mb-3 text-sm font-semibold text-cyan-200">User interfaces</p>
+              <p class="text-sm leading-7 text-slate-300">Responsive screens that are simple to scan, use and maintain.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band border-y border-white/10 py-16 md:py-24">
+        <div class="container-custom">
+          <div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="mb-2 text-sm uppercase tracking-[0.28em] text-cyan-300">Selected work</p>
+              <h2 class="text-3xl font-bold md:text-4xl">Featured Projects</h2>
+            </div>
+            <a href="/projects" class="shrink-0 text-sm font-medium text-cyan-300 transition hover:underline">
+              See all projects
+            </a>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {featured.map((project, i) => (
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                tech={project.data.tech}
+                slug={project.data.slug}
+                github={project.data.github}
+                demo={project.data.demo}
+                index={i + 1}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      <!-- Skills -->
-      <section class="py-6 md:py-10">
-        <Skills />
-      </section>
-
-      <!-- Featured projects -->
       <section class="container-custom py-16 md:py-24">
-        <div class="mb-10 flex items-center justify-between gap-4">
+        <div class="grid gap-8 rounded-xl border border-cyan-300/20 bg-cyan-300/10 p-8 md:grid-cols-[1fr_auto] md:items-center md:p-10">
           <div>
-            <p class="mb-2 text-sm uppercase tracking-[0.3em] text-cyan-400">Work</p>
-            <h2 class="text-3xl font-bold md:text-4xl">Featured Projects</h2>
+            <p class="mb-3 text-sm uppercase tracking-[0.28em] text-cyan-200">Let's connect</p>
+            <h2 class="text-3xl font-bold md:text-4xl">Looking for a junior developer?</h2>
+            <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
+              I'm open to internships, junior roles and collaborations where I can build useful web systems and keep growing.
+            </p>
           </div>
-          <a href="/projects" class="shrink-0 text-sm text-cyan-400 transition hover:underline">
-            See all →
-          </a>
-        </div>
-
-        <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {featured.map((project, i) => (
-            <ProjectCard
-              title={project.data.title}
-              description={project.data.description}
-              tech={project.data.tech}
-              slug={project.data.slug}
-              github={project.data.github}
-              demo={project.data.demo}
-              index={i + 1}
-            />
-          ))}
-        </div>
-      </section>
-
-      <!-- CTA section -->
-      <section class="container-custom pb-24 md:pb-32">
-        <div class="rounded-3xl border border-white/10 bg-white/5 p-10 text-center md:p-16">
-          <p class="mb-4 text-sm uppercase tracking-[0.3em] text-cyan-400">Let's connect</p>
-          <h2 class="mb-4 text-3xl font-bold md:text-4xl">Interested in working together?</h2>
-          <p class="mx-auto mb-10 max-w-xl text-lg leading-8 text-slate-300">
-            I'm open to internships, junior roles, freelance projects and collaborations.
-            Feel free to reach out — I'd love to hear from you.
-          </p>
-          <div class="flex flex-wrap justify-center gap-4">
-            <a
-              href="/contact"
-              class="rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-black transition hover:opacity-90"
-            >
+          <div class="flex flex-wrap gap-3 md:justify-end">
+            <a href="/contact" class="rounded-lg bg-cyan-300 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-200">
               Send a Message
             </a>
-            <a
-              href="/resume"
-              class="rounded-xl border border-white/20 px-6 py-3 text-white transition hover:border-cyan-400 hover:text-cyan-400"
-            >
-              View Resume
-            </a>
-            <a
-              href="https://www.linkedin.com/in/alessandro-campos-bb8243351/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="rounded-xl border border-white/20 px-6 py-3 text-white transition hover:border-cyan-400 hover:text-cyan-400"
-            >
+            <a href="https://www.linkedin.com/in/alessandro-campos-bb8243351/" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-white/20 px-6 py-3 text-white transition hover:border-cyan-300 hover:text-cyan-300">
               LinkedIn
             </a>
           </div>
         </div>
       </section>
-
     </main>
 
     <Footer />
