@@ -1,0 +1,47 @@
+---
+import JournalPage from "../layouts/JournalPage.astro";
+import {getCollection} from "astro:content";
+interface Props { english?:boolean }
+const {english=false}=Astro.props;
+const t=(es:string,en:string)=>english?en:es;
+const projects=await getCollection("projects");
+const descriptions:Record<string,string>={
+  "vr506-management-system":"Gestión de clientes, eventos e inventario para un negocio de simuladores de carreras, con permisos por rol e informes PDF.",
+  "inventory-dashboard":"Registro de productos y movimientos de stock para pequeños negocios y restaurantes.",
+  "personal-finance-dashboard":"Un dashboard que relaciona pagos, gastos fijos y ahorro con el límite de gasto diario.",
+  "personal-portfolio-blog":"La bitácora donde documento mis proyectos y lo que aprendo al desarrollarlos."
+};
+const tags=[...new Set(projects.flatMap(p=>p.data.tech.split(",").map(s=>s.trim())))].sort();
+---
+<JournalPage {english} slug="projects" title={t("Proyectos","Projects")} description={t("Sistemas web que he construido para gestionar eventos, seguir inventarios y entender gastos.","Web systems I've built to manage events, track inventory and understand spending.")}>
+  <div class="tools"><label for="technology">{t("Tecnología","Technology")}</label>
+    <select id="technology"><option value="">{t("Todas","All")}</option>{tags.map(tag=><option>{tag}</option>)}</select>
+    <output aria-live="polite"><span id="shown">{projects.length}</span> / {projects.length}</output>
+  </div>
+  {projects.map(({data})=><article data-stack={data.tech}>
+    <div><small>{data.tech}</small><h2><a href={'/projects/'+data.slug+'/'}>{data.title}</a></h2>
+    <p>{english?data.description:descriptions[data.slug]??data.description}</p>
+    <div class="actions"><a href={'/projects/'+data.slug+'/'}>{t("Ver proyecto","View project")} &rarr;</a>
+    {data.github&&<a href={data.github} target="_blank" rel="noopener noreferrer">GitHub</a>}
+    {data.demo&&<a href={data.demo} target="_blank" rel="noopener noreferrer">Demo</a>}</div></div>
+    {data.slug==="vr506-management-system"&&<a href="/projects/vr506-management-system/"><img src="/vr506-eventos.webp" width="1322" height="641" alt={t("Registro de eventos en VR506","VR506 event registration")}/></a>}
+  </article>)}
+</JournalPage>
+<script>
+  const filter=document.querySelector<HTMLSelectElement>("#technology");
+  filter?.addEventListener("change",()=>{
+    let count=0;
+    document.querySelectorAll<HTMLElement>("[data-stack]").forEach(row=>{
+      row.hidden=Boolean(filter.value)&&!row.dataset.stack?.split(",").map(s=>s.trim()).includes(filter.value);
+      if(!row.hidden) count++;
+    });
+    const shown=document.getElementById("shown");
+    if(shown) shown.textContent=String(count);
+  });
+</script>
+<style>
+.tools,.actions,article{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}.tools{padding:1rem 0}.tools,small{font:0.85rem/1.6 ui-monospace,monospace;color:var(--muted-soft)}
+select{background:var(--panel);color:var(--text);border:1px solid var(--border);padding:.4rem .75rem}output{margin-left:auto}
+article{border-top:1px solid var(--border);padding:1.5rem 0;justify-content:space-between}article[hidden]{display:none}article>div{flex:1 1 20rem}img{width:15rem;max-width:100%;height:auto}h2{font:600 1.65rem/1.25 Georgia,serif;margin:.4rem 0}
+p{line-height:1.65;color:var(--muted);max-width:42rem}.actions{margin-top:.85rem;color:var(--accent)}a:hover{text-decoration:underline}
+</style>

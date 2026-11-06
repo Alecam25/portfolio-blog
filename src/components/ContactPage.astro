@@ -1,0 +1,24 @@
+---
+import JournalPage from "../layouts/JournalPage.astro";
+import ContactForm from "./ContactForm.astro";
+
+interface Props { english?: boolean }
+const { english=false }=Astro.props;
+const t=(es:string,en:string)=>english?en:es;
+const message = t(
+  "Hola, Alessandro. Vi tu portafolio y me gustaría conversar sobre…",
+  "Hi Alessandro, I saw your portfolio and would like to talk about…"
+);
+const whatsappUrl = "https://wa.me/50672608432?text=" + encodeURIComponent(message);
+---
+<JournalPage {english} slug="contact" title={t("Contacto","Contact")} description={t("Busco prácticas y puestos junior en desarrollo web. Si tienes una oportunidad o una pregunta sobre un proyecto, puedes escribirme aquí.","I'm looking for internships and junior web development roles. Get in touch about an opportunity or a question about a project.")}>
+  <div class="columns"><aside><h2>{t("Contacto directo","Direct contact")}</h2>
+    <a href="mailto:Alessandro.cam.2005@gmail.com">Alessandro.cam.2005@gmail.com</a>
+    <p><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">{t("Escríbeme por WhatsApp","Message me on WhatsApp")} <span aria-hidden="true">&nearr;</span></a></p>
+    <p>Costa Rica</p><div><a href="https://github.com/Alecam25">GitHub</a> · <a href="https://www.linkedin.com/in/alessandro-campos-bb8243351/">LinkedIn</a></div>
+  </aside><section><h2>{t("Enviar un mensaje","Send a message")}</h2><ContactForm {english}/></section></div>
+</JournalPage>
+<style>
+.columns{display:grid;grid-template-columns:1fr 1.55fr;gap:2rem;padding:2rem 0}h2{font-size:1.45rem;font-weight:600;margin-bottom:1rem}a{color:var(--accent);overflow-wrap:anywhere}a:hover{text-decoration:underline}p{margin:.75rem 0;color:var(--muted)}
+@media(max-width:700px){.columns{grid-template-columns:1fr}}
+</style>

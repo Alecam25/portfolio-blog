@@ -1,7 +1,9 @@
 ---
+interface Props { english?: boolean }
+const {english=false}=Astro.props;
+const t=(es:string,en:string)=>english?en:es;
 const formAction = "https://formspree.io/f/xyklzabg";
 ---
-
 <form
   action={formAction}
   method="POST"
@@ -10,69 +12,64 @@ const formAction = "https://formspree.io/f/xyklzabg";
   <div class="grid gap-6 md:grid-cols-2">
     <div>
       <label for="name" class="mb-2 block text-sm font-medium text-slate-300">
-        Name
+        {t("Nombre","Name")}
       </label>
       <input
         id="name"
         name="name"
         type="text"
         required
-        placeholder="Your name"
         class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition focus:border-cyan-400"
+        placeholder={t("Tu nombre","Your name")}
       />
     </div>
-
     <div>
       <label for="email" class="mb-2 block text-sm font-medium text-slate-300">
-        Email
+        {t("Correo electrónico","Email")}
       </label>
       <input
         id="email"
         name="email"
         type="email"
         required
-        placeholder="youremail@example.com"
         class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition focus:border-cyan-400"
+        placeholder={t("nombre@ejemplo.com","youremail@example.com")}
       />
     </div>
   </div>
-
   <div>
     <label for="subject" class="mb-2 block text-sm font-medium text-slate-300">
-      Subject
+      {t("Asunto","Subject")}
     </label>
     <input
       id="subject"
       name="subject"
       type="text"
       required
-      placeholder="Internship, collaboration, freelance project..."
       class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition focus:border-cyan-400"
+        placeholder={t("Práctica, colaboración, proyecto...","Internship, collaboration, freelance project...")}
     />
   </div>
-
   <div>
     <label for="message" class="mb-2 block text-sm font-medium text-slate-300">
-      Message
+      {t("Mensaje","Message")}
     </label>
     <textarea
       id="message"
       name="message"
       rows="7"
       required
-      placeholder="Write your message here..."
       class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-slate-500 outline-none transition focus:border-cyan-400"
+        placeholder={t("Escribe tu mensaje aquí...","Write your message here...")}
     ></textarea>
   </div>
-
   <input type="hidden" name="_subject" value="New message from Alessandro Campos portfolio" />
   <input type="hidden" name="_captcha" value="false" />
   <input type="hidden" name="_next" value="https://portfolio-blog-astro-gilt.vercel.app/contact-success" />
-
   <button
     type="submit"
     class="inline-flex items-center justify-center rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-black transition hover:scale-[1.02] hover:opacity-90"
   >
-    Send Message
+    {t("Enviar mensaje","Send Message")}
   </button>
 </form>

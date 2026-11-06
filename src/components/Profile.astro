@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+
+interface Props { english?: boolean }
+const { english = false } = Astro.props;
+const t = (es: string, en: string) => english ? en : es;
+const heading = t("Sobre mí", "About me");
+const description = t(
+  "Soy Alessandro Campos, estudiante de Ingeniería de Sistemas en Costa Rica. Me interesa cómo una tarea cotidiana se convierte en una aplicación útil.",
+  "I'm Alessandro Campos, a Systems Engineering student in Costa Rica. I'm interested in how an everyday task becomes a useful application."
+);
+---
+<BaseLayout lang={t("es","en")} title={heading + " | Alessandro Campos"} description={description}>
+  <Header />
+  <main class="profile">
+    <div class="mast">
+      <a href={t("/", "/en/")}>{t("Bitácora de desarrollo", "Development journal")}</a>
+      <nav aria-label={t("Idioma", "Language")}><strong>{t("ES", "EN")}</strong> / <a hreflang={t("en","es")} href={t("/en/about/", "/about/")}>{t("EN","ES")}</a></nav>
+    </div>
+    <header class="opening">
+      <div>
+        <span class="label">{heading}</span>
+        <h1>Alessandro Campos</h1>
+        <p class="lead">{description}</p>
+        <p>{t("Cuando diseño una pantalla, empiezo por lo que alguien necesita hacer: registrar una entrada de inventario, programar un evento o decidir cuánto puede gastar hoy.", "When I design a screen, I start with what someone needs to do: record incoming stock, schedule an event or decide how much they can spend today.")}</p>
+      </div>
+      <aside aria-label={t("Formación e idiomas","Education and languages")}>
+        <dl>
+          <dt>{t("Formación","Education")}</dt>
+          <dd>{t("Ingeniería de Sistemas","Systems Engineering")}<br/>Universidad Tecnológica Costarricense</dd>
+          <dt>{t("Graduación prevista","Expected graduation")}</dt>
+          <dd>{t("Noviembre de 2026","November 2026")}</dd>
+          <dt>{t("Idiomas","Languages")}</dt>
+          <dd>{t("Español nativo · Inglés B2","Native Spanish · English B2")}</dd>
+        </dl>
+      </aside>
+    </header>
+    <section>
+      <h2>{t("Cómo trabajo","How I work")}</h2>
+      <div class="examples">
+        <div><small>PHP / MySQL</small><h3>{t("Del formulario al reporte","From form to report")}</h3>
+          <p>{t("En VR506, registrar un evento implica vincular un cliente, una fecha y un horario. Ese mismo registro sirve después para consultar el evento y generar su reporte en PDF.", "In VR506, scheduling an event means linking a client, a date and a time. That same record can then be retrieved and exported as a PDF report.")}</p>
+          <a href="/projects/vr506-management-system/">{t("Ver el caso de VR506","Explore VR506")} &rarr;</a></div>
+        <div><small>React / Supabase</small><h3>{t("Del cálculo a la pantalla","From calculation to interface")}</h3>
+          <p>{t("En el dashboard financiero, el saldo disponible cobra sentido cuando se sabe cuántos días debe cubrir. En la bitácora explico esa relación con un ejemplo en colones.", "In the finance dashboard, the available balance makes sense alongside the number of days it needs to cover. My journal explains that relationship with an example in Costa Rican colones.")}</p>
+          <a href={t("/blog/limite-diario/","/en/blog/daily-limit/")}>{t("Leer la nota de desarrollo","Read the development note")} &rarr;</a></div>
+      </div>
+    </section>
+    <section><h2>{t("Qué busco","What I'm looking for")}</h2>
+      <p>{t("Busco una práctica o un puesto junior donde pueda desarrollar sistemas web, trabajar con bases de datos y aprender de las revisiones de código. También me interesa profundizar en el desarrollo seguro.", "I'm looking for an internship or junior role where I can build web systems, work with databases and learn from code reviews. I also want to learn more about secure development.")}</p>
+      <div class="links"><a href={t("/contact/","/en/contact/")}>{t("Contactarme","Get in touch")} &rarr;</a><a href={t("/resume/","/en/resume/")}>{t("Ver mi CV","View my résumé")}</a></div>
+    </section>
+  </main><Footer />
+</BaseLayout>
+<style>
+.profile{max-width:64rem;margin:auto;padding:1.5rem clamp(1rem,4%,3rem) 2rem}
+.mast,.opening,section{border-bottom:1px solid var(--border)}
+.mast,.links{display:flex;align-items:center;gap:1.5rem}
+.mast{justify-content:space-between;padding:1rem 0}
+.mast,.label,small,dt{font:0.85rem/1.6 ui-monospace,monospace;color:var(--muted-soft)}
+a,.label{color:var(--accent)}a:hover{text-decoration:underline}
+.opening{display:grid;grid-template-columns:1.6fr 1fr;gap:3rem;align-items:start;padding:3rem 0}
+h1{font:700 3rem/1.08 system-ui;margin:.65rem 0 1rem}
+p,dd{color:var(--muted);line-height:1.7}
+p{margin:.75rem 0;max-width:43rem}.lead{font-size:1.17rem;color:var(--text)}
+aside{border-left:2px solid var(--accent);padding-left:1.5rem}dd+dt{margin-top:.8rem}
+section{padding:2rem 0}h2{font-size:1.6rem;font-weight:650}
+.examples{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:1.25rem}
+h3{font:600 1.45rem/1.25 Georgia,serif;margin:.4rem 0}.links{margin-top:1rem;flex-wrap:wrap}
+@media(max-width:680px){.opening,.examples{grid-template-columns:1fr;gap:1.5rem}.opening{padding:1.5rem 0}h1{font-size:2.5rem}}
+</style>

@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+interface Props { english?: boolean; note?: boolean }
+const {english=false,note=false}=Astro.props;
+const t=(es:string,en:string)=>english?en:es;
+const path=t("/blog/limite-diario/","/en/blog/daily-limit/");
+const title=t("Del saldo disponible al límite diario","From available balance to a daily limit");
+const alternate=note?t("/en/blog/daily-limit/","/blog/limite-diario/"):t("/en/","/");
+---
+<BaseLayout lang={t("es","en")} title={(note?title:t("Bitácora","Journal"))+" | Alessandro Campos"}>
+<Header />
+<main class="journal">
+<div class="mast"><span>{t("Bitácora de desarrollo","Development journal")}</span><nav aria-label={t("Idioma","Language")}><strong>{t("ES","EN")}</strong> / <a href={alternate} hreflang={t("en","es")}>{t("EN","ES")}</a></nav></div>
+{!note ? <>
+<header class="intro"><h1>Alessandro Campos</h1><p>{t("Construyo aplicaciones web para organizar inventarios, gestionar eventos y entender gastos. Estudio Ingeniería de Sistemas en Costa Rica.","I build web apps to track inventory, manage events and understand spending. I study Systems Engineering in Costa Rica.")}</p></header>
+<section class="feature"><div><small>{t("Proyecto destacado","Featured project")} · PHP / MySQL</small><h2>VR506</h2><p>{t("Un sistema para un negocio de simuladores de carreras. Reúne clientes, eventos e informes en un mismo lugar.","A system for a racing simulator business. It brings clients, events and reports into one place.")}</p><a href="/projects/vr506-management-system/">{t("Ver cómo funciona","Explore the project")} &rarr;</a></div>
+<figure class="screen">
+  <a href="/vr506-eventos.webp">
+    <img src="/vr506-eventos.webp" width="1322" height="641" alt={t("Formulario de VR506 para registrar el cliente, la fecha y el horario de un evento","VR506 event form with client, date and time fields")} />
+    <span>{t("Ampliar captura","View full size")} &nearr;</span>
+  </a>
+  <figcaption>VR506 / {t("Registro de eventos","Event registration")}</figcaption>
+</figure></section>
+<div class="journal-spread">
+  <section id="notas">
+    <small>{t("Bitácora personal","Personal journal")}</small>
+    <h2>{t("Última nota","Latest note")}</h2>
+    <a class="note-preview" href={path}>
+      <time datetime="2026-11-06">{t("06 nov 2026","Nov 06, 2026")}</time>
+      <h3>{title}</h3>
+      <p>{t("Con ₡60 000 disponibles, ¿qué cambia si faltan diez días para el próximo pago en lugar de quince? Un ejemplo del dashboard de finanzas.","With ₡60,000 available, what changes if payday is ten days away instead of fifteen? An example from the finance dashboard.")}</p>
+      <span>{t("Leer la nota","Read the note")} &rarr;</span>
+    </a>
+  </section>
+  <section>
+    <small>{t("Proyectos seleccionados","Selected work")}</small>
+    <h2>{t("Del archivo","From the archive")}</h2>
+    <a class="work" href="/projects/inventory-dashboard/"><b>Inventory Dashboard</b><span>PHP · MySQL</span><p>{t("Sigue un producto desde su entrada al inventario hasta su salida.","Follow a product from stock arrival to dispatch.")}</p></a>
+    <a class="work" href="/projects/personal-finance-dashboard/"><b>Personal Finance Dashboard</b><span>React · Supabase</span><p>{t("Reúne pagos, gastos fijos y ahorro para consultar cuánto queda disponible.","Bring payments, fixed expenses and savings together to see the available balance.")}</p></a>
+    <a href={t("/projects/","/en/projects/")}>{t("Ver todos los proyectos","Browse all projects")} &rarr;</a>
+  </section>
+</div>
+</> : <article><a href={t("/","/en/")}>&larr; {t("Bitácora","Journal")}</a><p><small>2026-11-06 · Personal Finance Dashboard</small></p><h1>{title}</h1>
+<p>{t("Mi dashboard registra pagos, gastos fijos y ahorros. La pregunta que le da sentido al saldo disponible es sencilla: ¿cuánto alcanza para hoy?","My dashboard tracks payments, fixed expenses and savings. The question that gives the available balance meaning is simple: how much is available for today?")}</p>
+<h2>{t("Un ejemplo con diez días","A ten-day example")}</h2><p>{t("Imagina un pago de ₡200 000. Si apartas ₡110 000 para gastos fijos y ₡30 000 para ahorro, quedan ₡60 000 disponibles. Repartidos entre diez días, son ₡6 000 por día.","Imagine a ₡200,000 payment. Set aside ₡110,000 for fixed expenses and ₡30,000 for savings. That leaves ₡60,000 to spread over ten days, or ₡6,000 a day.")}</p>
+<figure><figcaption>{t("Cálculo ilustrativo","Illustrative calculation")}</figcaption><b>₡60 000 ÷ 10 = ₡6 000</b></figure>
+<h2>{t("Una decisión de interfaz","An interface decision")}</h2><p>{t("En este ejemplo conviene mostrar los días junto al importe. Con el mismo saldo y quince días por cubrir, el límite baja a ₡4 000. Ver ambos datos permite entender qué cambió.","In this example it helps to show the period alongside the amount. With the same balance and fifteen days to cover, the limit drops to ₡4,000. Showing both values makes the change easier to understand.")}</p><a href="/projects/personal-finance-dashboard/">{t("Explorar el dashboard","Explore the dashboard")} &rarr;</a>
+</article>}
+</main><Footer /></BaseLayout>
+<style>
+.journal{max-width:64rem;margin:auto;padding:1.5rem clamp(1rem,4%,3rem) 3rem}
+.mast,.entry{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0}
+.mast,.feature{border-bottom:1px solid var(--border)}
+.mast,small,time,figcaption,.branch{font:0.85rem/1.6 ui-monospace,monospace}
+small,time,figcaption{color:var(--muted-soft)}a,strong{color:var(--accent)}a:hover{text-decoration:underline}
+.intro{padding:3rem 0 2rem}h1{font:bold 3rem/1.08 system-ui}p{max-width:42rem;color:var(--muted);line-height:1.7;margin:1rem 0}
+.feature{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center;border-top:1px solid var(--border)}
+section{padding:2rem 0}h2{font-size:1.6rem;font-weight:650}.feature h2{font-size:3rem}
+figure{background:var(--panel);border-left:3px solid var(--accent);padding:1.25rem 1.5rem}figure b{display:block;margin:.75rem 0}.branch{padding:.25rem .8rem;border-left:1px solid var(--border);color:var(--muted)}article{max-width:45rem;margin:2.5rem auto}article h2{margin-top:2rem}
+@media(max-width:660px){.feature{grid-template-columns:1fr;gap:1rem}h1{font-size:2.5rem}.entry{flex-wrap:wrap}}
+.screen{padding:0;background:transparent;border:0}
+.screen img{width:100%;height:auto;border:1px solid var(--border)}
+.screen a{display:block}.screen span{float:right;margin-top:.45rem;font-size:.85rem}
+.screen figcaption{margin-top:.45rem}
+@media(max-width:660px){.intro{padding:1.5rem 0 .75rem}.feature{padding:1.25rem 0}.journal{padding-top:.5rem}}
+.journal-spread{display:grid;grid-template-columns:1.15fr 1fr;gap:3rem}
+.journal-spread h2{margin:.3rem 0 1rem}
+.note-preview,.work{display:block;padding:1rem 0;border-top:1px solid var(--border)}
+.note-preview h3{color:var(--text);font:600 1.65rem/1.18 Georgia,serif;margin-top:.6rem}
+.work span{display:block;color:var(--muted-soft);font: .8rem/1.8 ui-monospace,monospace}
+.work p{margin:.3rem 0}.note-preview:hover,.work:hover{text-decoration:none}
+.note-preview:hover h3,.work:hover b{text-decoration:underline}
+@media(max-width:700px){.journal-spread{grid-template-columns:1fr;gap:0}.journal-spread section+section{border-top:1px solid var(--border)}}
+</style>

@@ -1,0 +1,11 @@
+---
+import Journal from "../components/Journal.astro";
+export function getStaticPaths() {
+  return [
+    {params:{journal:"en"},props:{english:true}},
+    {params:{journal:"blog/limite-diario"},props:{note:true}},
+    {params:{journal:"en/blog/daily-limit"},props:{english:true,note:true}},
+  ];
+}
+---
+<Journal {...Astro.props} />
